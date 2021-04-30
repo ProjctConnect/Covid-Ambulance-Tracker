@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "180570073891",
+    "project_id": "covid-ambulance-tracker",
+    "storage_bucket": "covid-ambulance-tracker.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:180570073891:android:38b0be2a03fc56805d3a96",
+        "android_client_info": {
+          "package_name": "com.example.covidambulancetracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "180570073891-k57s1h5shiaa2hg2un30du8tgfqujasg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChpzfRp1_8UUaI4jj0FSjIPQiRWvLaTyI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "180570073891-k57s1h5shiaa2hg2un30du8tgfqujasg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
