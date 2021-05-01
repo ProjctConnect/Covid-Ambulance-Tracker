@@ -18,4 +18,11 @@
         <item name="android:windowBackground">@drawable/iphone_12_pro_max___1</item>
         <item name="android:windowFullscreen">true</item>
     </style>
+
+    <style name="LoginTheme" parent="FirebaseUI">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="android:colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
 </resources>

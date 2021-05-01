@@ -3,6 +3,7 @@ package com.example.covidambulancetracker;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
@@ -29,7 +30,7 @@ public class SplashScreenActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        firebaseAuth.addAuthStateListener(listener);
+       delaysplashscreen();
     }
 
     @Override
@@ -46,12 +47,17 @@ public class SplashScreenActivity extends AppCompatActivity {
     }
 
     private void init() {
-        providers= Arrays.asList(new AuthUI.IdpConfig.PhoneBuilder().build());
+        providers = Arrays.asList(
+                new AuthUI.IdpConfig.GoogleBuilder().build(),
+                new AuthUI.IdpConfig.PhoneBuilder().build());
+
+
+
         firebaseAuth=FirebaseAuth.getInstance();
         listener= myFirebaseAuth -> {
             FirebaseUser user=myFirebaseAuth.getCurrentUser();
             if(user!=null){
-                delaysplashscreen();
+                Toast.makeText(this, "Welcome!"+user.getUid(), Toast.LENGTH_SHORT).show();
             }else{
                 showLoginLayout();
 
@@ -60,14 +66,20 @@ public class SplashScreenActivity extends AppCompatActivity {
     }
 
     private void showLoginLayout() {
-        AuthMethodPickerLayout authMethodPickerLayout = new AuthMethodPickerLayout.Builder(R.layout.layout_sigh_in).setPhoneButtonId(R.id.btn_phone_sigh_in).build();
+        AuthMethodPickerLayout authMethodPickerLayout = new AuthMethodPickerLayout.Builder(R.layout.layout_sigh_in).setPhoneButtonId(R.id.btn_phone_sign_in).setGoogleButtonId(R.id.btn_google_sign_in).build();
         startActivityForResult(AuthUI.getInstance().createSignInIntentBuilder().setAuthMethodPickerLayout(authMethodPickerLayout).setIsSmartLockEnabled(false).setAvailableProviders(providers).build(),LOGIN_REQUEST_CODE);
     }
 
+    @SuppressLint("CheckResult")
     private void delaysplashscreen() {
-        Completable.timer(5, TimeUnit.SECONDS,
+        Completable.timer(3, TimeUnit.SECONDS,
                 AndroidSchedulers.mainThread())
-                .subscribe(() -> Toast.makeText(SplashScreenActivity.this, "Covid Ambulance Tracker", Toast.LENGTH_SHORT).show());
+                .subscribe(() ->
+
+                        firebaseAuth.addAuthStateListener(listener)
+
+
+                        );
     }
 
     @Override
